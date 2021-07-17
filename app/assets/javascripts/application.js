@@ -20,5 +20,7 @@
 
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+
+// ターボリンクを無効化
+// require turbolinks
 //= require_tree .

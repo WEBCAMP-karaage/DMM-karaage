@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :customers
   root to: 'customer/homes#top'
   get '/homes/about' => 'customer/homes#about'
-  devise_for :customers
+
   # admin側のdeviseコントローラーを作成し、それがどこにあるか指定している
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -10,8 +11,8 @@ Rails.application.routes.draw do
 }
   # 顧客ページ関連
   get '/customers/my_page' => 'customer/customers#show'
-  get '/customers/edit' => 'customer/customers#edit'
-  patch '/customers' => 'customer/customers#update'
+  get '/customers/edit_self' => 'customer/customers#edit'
+  patch '/customers_update' => 'customer/customers#update'
   get '/customers/check' => 'customer/customers#check'
   patch '/customers/out' => 'customer/customers#out'
 
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   resources :cart_products, only: [:index, :create, :update, :destroy]
   get '/cart_products/destroy_all' => 'cart_products#destroy_all'
   # orderコントローラー関連
-  resources :order, only: [:new, :show, :index]
+  resources :orders, only: [:new, :show, :index]
   get '/orders/confilm' => 'orders#confilm'
   get '/orders/done' => 'orders#done'
   end
