@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2 jenre_reserch">
+    <ul class="list-group">
+        <li class="list-group-item "><strong>ジャンル検索</strong></li>
+        <% @genres.each do |genre| %>
+    	    <li class="list-group-item"><%= genre.name %></li>
+        <% end %>
+    </ul>
+    </div>
+    
+    <div class="col-lg-10 jenre_reserch">
+    <h2 class="product-headline">商品一覧<small>(全<%= @products.count %>件)</h2>
+      <div class="product-box  d-flex flex-wrap">
+      <% @products.each do |product|%>
+        <div class="flex_container">
+          <table>
+            <tr>
+              <td><%= attachment_image_tag(product, :image, :fill,200,200, fallback: "no_image.jpg", size:'200x200') %></td>
+            </tr>
+            <tr>
+              <td><%= link_to product.name, product_path(product) %></td>
+            </tr>
+            <tr>
+              <td>¥<%= product.non_taxed_price %>(税抜)</td>
+            </tr>
+          </table>  
+        </div>
+      <% end %>
+      </div>
+      <div class="pagination">
+        <ul class="pagination mx-auto">
+          <%= paginate @products %>
+        </ul>
+      </div>
+    </div>
+</div>
