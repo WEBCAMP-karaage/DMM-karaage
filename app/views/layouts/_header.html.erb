@@ -12,7 +12,7 @@
         <% if customer_signed_in? %>
           <li><%= link_to 'マイページ',customers_my_page_path, class: 'nav-link text-light border rounded mr-2' %></li>
           <li><%= link_to '商品一覧', products_path, class: 'nav-link text-light border rounded mx-2' %></li>
-          <li><%= link_to 'カート', cart_product_path, class: 'nav-link text-light border rounded mx-2'%></li>
+          <li><%= link_to 'カート', cart_products_path, class: 'nav-link text-light border rounded mx-2'%></li>
           <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete,class: 'nav-link text-light border rounded ml-2' %></li>
         <% elsif admin_signed_in? %>
           <li><%= link_to '商品一覧',admin_products_path, class: 'nav-link text-light border rounded mr-2' %></li>
