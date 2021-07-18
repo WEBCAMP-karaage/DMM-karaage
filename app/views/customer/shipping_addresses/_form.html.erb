@@ -1,0 +1,37 @@
+<table>
+  <thead>
+    <tr>
+      <th style="width: 20%"></th>
+      <th style="width: 20%"></th>
+      <th style="width: 20%"></th>
+      <th style="width: 20%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= form_with model:shipping_address, local:true do |f| %>
+      <tr>
+        <td>郵便番号(ハイフンなし)</td>
+        <td>
+        <%= f.text_field :postal_code, class: 'form-control', :placeholder =>'0000000' %>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td colspan="2">
+        <%= f.text_field :address, class: 'form-control', :placeholder =>'東京都渋谷区代々木神園町0-0'%>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>宛名</td>
+        <td>
+        <%= f.text_field :name, class: 'form-control', :placeholder =>'令和道子' %>
+        <td></td>
+        </td>
+      <td><%= f.submit "会員登録", class: "btn btn-md btn-success" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
