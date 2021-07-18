@@ -19,6 +19,11 @@ class Customer::CustomersController < ApplicationController
   end
 
   def out
+    @customer = Customer.find(current_customer.id)
+    @customer.update(withdrawal_flag: true)
+    # sessionIDのリセットを行う
+    reset_session
+    redirect_to root_path
   end
 
   private
