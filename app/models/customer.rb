@@ -10,4 +10,6 @@ class Customer < ApplicationRecord
     super && (self.withdrawal_flag == false)
   end
   
+
+  has_many :cart_products, dependent: :destroy
 end
