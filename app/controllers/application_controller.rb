@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :reject_inactive_customer, only: [:create]
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
     protected
     def configure_permitted_parameters
