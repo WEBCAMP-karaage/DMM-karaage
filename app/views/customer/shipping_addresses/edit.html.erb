@@ -1,1 +1,44 @@
-<h1>shipping_addresses_editpage</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <h2 class="mt-4">配送先編集</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%"></th>
+            <th style="width: 20%"></th>
+            <th style="width: 20%"></th>
+            <th style="width: 20%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= form_with model:@shipping_address, local:true do |f| %>
+            <tr>
+              <td>郵便番号(ハイフンなし)</td>
+              <td>
+              <%= f.text_field :postal_code, class: 'form-control' %>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>住所</td>
+              <td colspan="2">
+              <%= f.text_field :address, class: 'form-control' %>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>宛名</td>
+              <td>
+              <%= f.text_field :name, class: 'form-control' %>
+              <td></td>
+              </td>
+            <td><%= f.submit "変更内容を保存", class: "btn btn-md btn-success" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
