@@ -10,4 +10,6 @@ class Product < ApplicationRecord
     def  add_tax_price
       (self.non_taxed_price * 1.10).round
     end
+    
+    attachment :image, destroy: false
 end
