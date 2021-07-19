@@ -3,7 +3,8 @@ class Customer::ShippingAddressesController < ApplicationController
   before_action :ensure_current_customer, only: [:edit, :update, :destroy]
 
   def index
-    @shipping_addresses = ShippingAddress.all
+    customer = Customer.find(current_customer.id)
+    @shipping_addresses = customer.shipping_addresses
     @shipping_address = ShippingAddress.new
   end
 
@@ -46,7 +47,7 @@ class Customer::ShippingAddressesController < ApplicationController
   def shipping_address_params
     params.require(:shipping_address).permit(:name, :postal_code, :address)
   end
-  
+
   def ensure_current_customer
     @shipping_address = ShippingAddress.find(params[:id])
     unless @shipping_address.customer == current_customer
