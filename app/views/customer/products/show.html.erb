@@ -15,7 +15,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-5">
-            <p><%= attachment_image_tag(@product, :image, :fill, fallback:"no_image.jpg", size:'300x300')%></p>
+            <p><%= attachment_image_tag(@product, :image, :fill,300,300, fallback:"no_image.jpg", size:'300x300')%></p>
           </div>
           <div class="col-md-7">
             <h2><%= @product.name %></h2>
