@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   # customer側のproductsコントローラー関連
   resources :products, only: [:index, :show]
   # cart_productsコントローラー関連
+  delete '/cart_products/destroy_all' => 'cart_products#all_destroy'
   resources :cart_products, only: [:index, :create, :update, :destroy]
-  get '/cart_products/destroy_all' => 'cart_products#destroy_all'
   # orderコントローラー関連
   resources :orders, only: [:new, :show, :index]
   get '/orders/confilm' => 'orders#confilm'
