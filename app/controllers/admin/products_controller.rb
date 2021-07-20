@@ -1,5 +1,6 @@
 class Admin::ProductsController < ApplicationController
   def index
+    @products = Product.page(params[:page]).per(10)
   end
 
   def show
@@ -8,7 +9,7 @@ class Admin::ProductsController < ApplicationController
   def new
     @product = Product.new
     @genres = Genre.all
-    @genres.first
+    #@genres.first
   end
 
   def create
