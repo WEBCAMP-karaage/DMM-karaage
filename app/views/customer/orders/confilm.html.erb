@@ -59,6 +59,17 @@
     </table>
   </div>
   <div class="row">
-    
+  <div class="row">
+    <%= form_with model: @order, url: orders_path, method: :post, local:true do |f| %>
+    <%= f.hidden_field :customer_id %>
+    <%= f.hidden_field :shipping_cost %>
+    <%= f.hidden_field :total_price %>
+    <%= f.hidden_field :payment_method %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :address %>
+    <%= f.hidden_field :postal_code %>
+    <%= f.submit "注文確定" %>
+    <% end %>
+  </div>
   </div>
 </div>

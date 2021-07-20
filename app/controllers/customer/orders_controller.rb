@@ -1,5 +1,18 @@
 class Customer::OrdersController < ApplicationController
   def create
+    order = Order.new(order_params)
+    order.save
+    # カートテーブルのレコードから注文商品テーブルを作成する
+    current_customer.cart_products.each do |item|
+      order_product = OrderProduct.new
+      order_product.order_id = order.id
+      order_product.product_id = item.product.id
+      order_product.quantity = item.quantity
+      order_product.order_price = item.sub_price
+      order_product.save
+    end
+    current_customer.cart_products.destroy_all
+    redirect_to orders_done_path
   end
 
   def new
@@ -19,15 +32,22 @@ class Customer::OrdersController < ApplicationController
       @order.address = current_customer.address
 
     elsif params[:order][:address_option] == "1"
-      shipping_address = ShippingAddress.find(params[:order][:shipping_address_option])
+      if params[:order][:shipping_address_option] == ""
+        redirect_to new_order_path
+
+      else shipping_address = ShippingAddress.find(params[:order][:shipping_address_option])
       @order.postal_code = shipping_address.postal_code
       @order.name = shipping_address.name
       @order.address = shipping_address.address
+      end
 
-    else
+    elsif params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.name = params[:order][:name]
       @order.address = params[:order][:address]
+
+    else
+      redirect_to new_order_path
     end
 
   end
@@ -49,4 +69,10 @@ class Customer::OrdersController < ApplicationController
     end
     return @sum
   end
+
+  private
+  def order_params
+    params.require(:order).permit(:customer_id, :shipping_cost, :total_price, :payment_method, :name, :address, :postal_code)
+  end
+
 end

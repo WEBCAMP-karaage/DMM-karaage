@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   # orderコントローラー関連
   post '/orders/confilm' => 'orders#confilm'
   get '/orders/done' => 'orders#done'
-  resources :orders, only: [:new, :show, :index]
+  resources :orders, only: [:new, :show, :index, :create]
   end
 
   namespace :admin do
