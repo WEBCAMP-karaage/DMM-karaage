@@ -6,10 +6,10 @@ class Product < ApplicationRecord
     # 注文商品テーブルとのアソシエーション
     has_many :order_products, dependent: :destroy
 
+    belongs_to :genre
     #税込み
     def  add_tax_price
       (self.non_taxed_price * 1.10).round
     end
-
 
 end
