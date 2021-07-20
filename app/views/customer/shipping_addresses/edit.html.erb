@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-10 mx-auto">
       <h2 class="mt-4">配送先編集</h2>
-      <table>
+      <table class="table  table-borderless table-sm">
         <thead>
           <tr>
             <th style="width: 20%"></th>
@@ -14,7 +14,7 @@
         <tbody>
           <%= form_with model:@shipping_address, local:true do |f| %>
             <tr>
-              <td>郵便番号(ハイフンなし)</td>
+              <th><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></th>
               <td>
               <%= f.text_field :postal_code, class: 'form-control' %>
               </td>
@@ -22,14 +22,14 @@
               <td></td>
             </tr>
             <tr>
-              <td>住所</td>
+              <th><%= f.label :address, "住所" %></th>
               <td colspan="2">
               <%= f.text_field :address, class: 'form-control' %>
               </td>
               <td></td>
             </tr>
             <tr>
-              <td>宛名</td>
+              <th><%= f.label :name, "宛名" %></th>
               <td>
               <%= f.text_field :name, class: 'form-control' %>
               <td></td>
