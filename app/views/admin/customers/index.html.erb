@@ -1,1 +1,44 @@
-<h1>admin/customers_index</h1>
+<div class="container">
+  <div class="row mt-4 col-10 mx-auto">
+    <h2>会員一覧画面</h2>
+  </div>
+  <div class="row col-10 mt-4 mx-auto">
+    <table class="table mx-auto" style="width: 75%">
+      <thead>
+        <th scope="col" style="width: 15%">会員ID</th>
+        <th scope="col" style="width: 30%">氏名</th>
+        <th scope="col" style="width: 40%">メールアドレス</th>
+        <th scope="col" style="width: 15%"ステータス</th>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+        <tr scope="row">
+          <th><%= customer.id %></th>
+          <td>
+            <u>
+              <%= link_to admin_customer_path(customer) do %>
+              <%= customer.first_name %><%= customer.last_name %>
+              <% end %>
+            </u>
+          </td>
+          <td><%= customer.email %></td>
+          <td>
+            <% if customer.withdrawal_flag == false %>
+              <span class="text-success">有効</span>
+            <% else %>
+              <span class="text-danger">退会</span>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="pagination">
+      <ul class="pagination mx-auto">
+        <%= paginate @customers %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,6 @@
       <h2 class="mt-4">会員情報編集</h2>
        <table class="table table-borderless">
           <%= form_with model: @customer, url: customers_update_path, local:true do |f| %>
-          <%= render "devise/shared/error_messages", resource: @customer %>
           <thead>
             <tr>
               <th style="width: 30%"></th>
