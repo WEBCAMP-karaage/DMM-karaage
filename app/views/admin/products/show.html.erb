@@ -1,1 +1,51 @@
-<h1>admin/products_show</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <h2 class="mt-4">商品詳細</h2>
+      <div class="row">
+        <div class="col-md-5">
+          <p><%= attachment_image_tag(@product, :image, :fill,300,300, fallback:"no_image.jpg", size:'300x300')%></p>
+        </div>
+        <div class="col-md-7">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th style="width: 30%"></th>
+                <th style="width: 70%"></th>
+              </tr>
+            <tbody>
+              <tr>
+                <th>商品名</th>
+                <td><%= @product.name %></td>
+              </tr>
+              <tr>
+                <th>商品説明</th>
+                <td><%= @product.description %></td>
+              </tr>
+              <tr>
+                <th>ジャンル</th>
+                <td><%= @product.genre.name %></td>
+              </tr>
+              <tr>
+                <th>税抜価格</br>(税込価格)</th>
+                <td>
+                  <%= @product.add_tax_price.to_s(:delimited) %>
+                  (<%= @product.non_taxed_price.to_s(:delimited) %>)円
+                </td>
+              </tr>
+              <tr>
+                <th>販売ステータス</td>
+                <td>
+                <%= @product.sales_status ? '販売中' : '販売停止中'%>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <%= link_to '編集する', edit_admin_product_path(@product), class: "btn btn-sm btn-success edit_admin_product#{@product.id}" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
