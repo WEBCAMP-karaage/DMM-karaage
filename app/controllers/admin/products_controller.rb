@@ -4,12 +4,12 @@ class Admin::ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def new
     @product = Product.new
     @genres = Genre.all
-    #@genres.first
   end
 
   def create
