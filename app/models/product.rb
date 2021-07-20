@@ -12,5 +12,4 @@ class Product < ApplicationRecord
       (self.non_taxed_price * 1.10).round
     end
 
-    attachment :image, destroy: false
 end
