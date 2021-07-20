@@ -38,7 +38,8 @@
             <tr>
               <td>
                 <%= f.label :genre_id, "ジャンル" %></td>
-              <td colspan="2"><%= f.select :genre_id, @genres.map {|genre| [genre.name] }, {include_blank: "--選択してください--"}, {class: 'form-control', required: true} %>
+              <td colspan="2">
+                <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: '-- 選択してください --') %>
               </td>
               <td>
               </td>
@@ -57,7 +58,7 @@
               </td>
               <td>
                 <%= f.radio_button :sales_status, false %>
-                <%= f.label :sales_status, "販売停止中" %>
+                <%= f.label :sales_status, "販売停止中", value: false %>
               </td>
               <td></td>
             </tr>
