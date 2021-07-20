@@ -21,7 +21,7 @@
                   <%= product.id %>
                 </td>
                 <td>
-                  <%= link_to product.name, admin_product_path(product) %>
+                  <u><%= link_to product.name, admin_product_path(product) %></u>
                 </td>
                 <td>
                   <%= product.non_taxed_price.to_s(:delimited)  %>

@@ -1,22 +1,24 @@
 <% if shipping_addresses.present? %>
-<table class= "table-bordered mt-4" >
+<table class="mt-5 mb-5 table" >
   <thead>
-    <tr>
-      <th>郵便番号</th>
-      <th>住所</th>
-      <th>宛名</th>
-      <th colspan="3"></th>
+    <tr class="table-active">
+      <th class="border border-dark" style="width: 15%" scope="col">郵便番号</th>
+      <th class="border border-dark" style="width: 40%" scope="col">住所</th>
+      <th class="border border-dark" style="width: 15%" scope="col">宛名</th>
+      <th class="border border-dark" style="width: 30%" scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <% shipping_addresses.each do |shipping_address| %>
       <tr>
-        <td><%= shipping_address.postal_code %></td>
-        <td><%= shipping_address.address %></td>
-        <td><%= shipping_address.name %></td>
-        <td><%= link_to '編集する', edit_shipping_address_path(shipping_address), class: "btn btn-sm btn-success edit_shipping_address#{shipping_address.id}" %></td>
-        <td><%= link_to '削除する', shipping_address_path(shipping_address), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-sm btn-danger destroy_shipping_address_#{shipping_address.id}" %></td>
-      </tr>
+        <td class="border border-dark" ><%= shipping_address.postal_code %></td>
+        <td class="border border-dark" ><%= shipping_address.address %></td>
+        <td class="border border-dark" ><%= shipping_address.name %></td>
+        <td class="border border-dark" >
+          <%= link_to '編集する', edit_shipping_address_path(shipping_address), class: "btn btn-success edit_shipping_address#{shipping_address.id}" %>
+          <%= link_to '削除する', shipping_address_path(shipping_address), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger destroy_shipping_address_#{shipping_address.id}" %>
+        </td>
+      </tr
     <% end %>
   </tbody>
 </table>
