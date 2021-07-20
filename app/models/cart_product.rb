@@ -7,5 +7,13 @@ class CartProduct < ApplicationRecord
     def sub_price
       add_tax_price * self.quantity
     end
-    
+
+    def total_price
+      @sum = 0
+      self.to_a.each do |product|
+        @sum += product.sub_price
+      end
+      return @sum
+    end
+
 end

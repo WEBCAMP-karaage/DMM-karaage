@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   delete '/cart_products/destroy_all' => 'cart_products#all_destroy'
   resources :cart_products, only: [:index, :create, :update, :destroy]
   # orderコントローラー関連
-  get '/orders/confilm' => 'orders#confilm'
+  post '/orders/confilm' => 'orders#confilm'
   get '/orders/done' => 'orders#done'
-  resources :orders, only: [:new, :show, :index]
+  resources :orders, only: [:new, :show, :index, :create]
   end
 
   namespace :admin do
