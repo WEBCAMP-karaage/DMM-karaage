@@ -4,10 +4,10 @@
     <div class="">
     <%= form_with model: @order, url: orders_confilm_path, local:true do |f| %>
       <p>支払い方法</p>
-      <%= f.radio_button :payment_method, :card %>
-      <%= f.label :payment_method, "クレジットカード", {value: :card} %></br>
-      <%= f.radio_button :payment_method, :transfer %>
-      <%= f.label :payment_method, "銀行振り込み", {value: :transfer} %>
+      <%= f.radio_button :payment_method, :"クレジットカード" %>
+      <%= f.label :payment_method, "クレジットカード", {value: :"クレジットカード"} %></br>
+      <%= f.radio_button :payment_method, :"銀行振り込み" %>
+      <%= f.label :payment_method, "銀行振り込み", {value: :"銀行振り込み"} %>
       <p>お届け先</p>
       <%= f.radio_button :address_option, 0 %>
       <%= f.label :address_option, "ご自身の住所", value: 0 %></br>
