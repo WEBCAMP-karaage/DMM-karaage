@@ -9,6 +9,7 @@
             <h5>支払い方法</h5>
           </div>
           <div class="ml-4">
+            <!--enumをcollestion_radio_buttonsで使用する-->
             <%= f.collection_radio_buttons :payment_method, Order.payment_methods, :first, :first %>
           </div>
         </div>
