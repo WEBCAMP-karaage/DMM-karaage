@@ -33,22 +33,23 @@ class Customer::OrdersController < ApplicationController
 
     elsif params[:order][:address_option] == "1"
       if params[:order][:shipping_address_option] == ""
-        render :new and return
+        redirect_to new_order_path
+
       else shipping_address = ShippingAddress.find(params[:order][:shipping_address_option])
-        @order.postal_code = shipping_address.postal_code
-        @order.name = shipping_address.name
-        @order.address = shipping_address.address
+      @order.postal_code = shipping_address.postal_code
+      @order.name = shipping_address.name
+      @order.address = shipping_address.address
       end
 
-    else params[:order][:address_option] == "2"
+    elsif params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.name = params[:order][:name]
       @order.address = params[:order][:address]
 
-      if @order.invalid?
-        render :new
-      end
+    else
+      redirect_to new_order_path
     end
+
   end
 
   def done
