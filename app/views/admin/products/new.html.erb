@@ -14,7 +14,7 @@
         <tbody>
           <%= form_with model:@product, url:admin_products_path, local:true do |f| %>
             <tr>
-              <th><%= f.label :image, "商品画像" %></th>
+              <th><%= f.label :image, "商品画像" , class: "form_control"%></th>
               <td colspan="2">
               <%= f.attachment_field :image %>
               </td>
@@ -39,7 +39,7 @@
               <th>
                 <%= f.label :genre_id, "ジャンル" %></th>
               <td colspan="2">
-                <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: '-- 選択してください --') %>
+                <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: '-- 選択してください --'}, {class: "form_control"}) %>
               </td>
               <td>
               </td>
