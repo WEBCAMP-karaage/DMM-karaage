@@ -11,10 +11,12 @@
     </thead>
     <tbody>
       <% @orders.each do |order|%>
-      <td><% link_to order.ceated_at.strftime("%Y/%m/%d/ %H:%M:%S").to_s, admin_order_path(order) %></td>
-      <td><% order.customer.first_name %>&nbsp;&nbsp;&nbsp;% order.customer.last_name %></td>
-      <td><% order.order_products.quantity %></td>
-      <td><% order.order_status%></td>
+      <tr>
+        <td><%= link_to order.created_at.strftime("%Y/%m/%d/ %H:%M:%S").to_s, admin_order_path(order) %></td>
+        <td><%= order.customer.first_name %>&nbsp;&nbsp;&nbsp;<% order.customer.last_name %></td>
+        <td><%= order.sum_order_produts %></td>
+        <td><%= order.order_status %></td>
+      </tr>
       <% end %>
     </tbody>
    </table>

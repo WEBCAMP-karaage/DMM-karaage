@@ -1,3 +1,80 @@
 <div class="container px-7 px-md-5 mt-5">
-<h2 class="head-line orders">注文履歴詳細</h2>
+<h2 class="orders">注文履歴詳細</h2>
 </div>
+
+<div class="container">
+  <table class="w-100 table table-borderless">
+      <tr class="row pt-2">
+        <th class="col-md-2">購入者</th>
+        <td class="col-md-10">
+          <u>
+              <%= link_to admin_customer_path(@order.customer) do %>
+              <%= @order.customer.first_name %>&nbsp;&nbsp;&nbsp;<%= @order.customer.last_name %>
+              <% end %>
+          </u></td>
+      </tr>
+      <tr class="row pt-2">
+        <th class="col-md-2">注文日</th>
+        <td class="col-md-10"><%= @order.created_at.strftime('%Y/%m/%d') %>
+      </tr>
+      <tr class="row pt-2">
+        <th class="col-md-2">配送先</th>
+        <td class="col-md-10">〒<%= @order.postal_code.to_s.insert(3, "-") %>
+        <%= @order.address %><br>
+        <%= @order.name %>
+      </tr>
+      <tr class="row pt-2">
+        <th class="col-md-2">支払方法</th>
+        <td class="col-md-10"><%= @order.payment_method %>
+      </tr>
+      <tr class="row pt-2">
+        <th class="col-md-2">注文ステータス</th>
+        <td class="col-md-10">
+            <%= form_with(model: @order, url: admin_order_path(@order), local: true, class: "form-row") do |f| %>
+                <%= f.select :order_status, options_for_select(Order.order_statuses, selected: Order.order_statuses[@order.order_status]) , class:"form-control form-control-sm col-6"  %>
+                <%= f.submit "更新" %>
+            <% end %>
+      </tr>
+    </table>
+    <div class="admin-order-bottom row mt-5 w-100">
+      <table class="table table-borderless col-md-8">
+        <tr>
+          <th class="table-active">商品名</th>
+          <th class="table-active">単価（税込）</th>
+          <th class="text-center table-active">数量</th>
+          <th class="text-center table-active">小計</th>
+          <th class="table-active">製作ステータス</th>
+        </tr>
+        <% @order.order_products.each do |order_product| %>
+        <tr>
+          <td><%= order_product.product.name %></td>
+          <td><%= order_product.product.add_tax_price.to_s(:delimited) %></td>
+          <td class="text-center"><%= order_product.quantity %></td>
+          <td class="text-center"><%= (order_product.product.add_tax_price * order_product.quantity).to_s(:delimited) %></td>
+          <td>
+            <%= form_with(model: order_product, url: admin_order_product_path(order_product), local: true, class: "form-row") do |f| %>
+                <%= f.select :product_status, options_for_select(OrderProduct.product_statuses, selected: OrderProduct.product_statuses[order_product.product_status]) , class:"form-control form-control-sm col-6"  %>
+                <%= f.submit "更新" %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <table class="table col-md-4 ml-auto table-borderless">
+        <tr>
+          <th>商品合計</th>
+          <td><%= @order.total_price.to_s(:delimited)%>円</td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td><%= @order.shipping_cost.to_s(:delimited)%>円</td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <td><%= (@order.total_price.to_i + @order.shipping_cost.to_i).to_s(:delimited) %>円</td>
+        </tr>
+      </table>  
+    </div>
+</div>
+
+
