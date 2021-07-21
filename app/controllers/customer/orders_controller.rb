@@ -33,7 +33,7 @@ class Customer::OrdersController < ApplicationController
 
     elsif params[:order][:address_option] == "1"
       if params[:order][:shipping_address_option] == ""
-        redirect_to new_order_path
+        redirect_to new_order_path and return
 
       else shipping_address = ShippingAddress.find(params[:order][:shipping_address_option])
       @order.postal_code = shipping_address.postal_code
@@ -41,13 +41,14 @@ class Customer::OrdersController < ApplicationController
       @order.address = shipping_address.address
       end
 
-    elsif params[:order][:address_option] == "2"
+    else params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.name = params[:order][:name]
       @order.address = params[:order][:address]
-
-    else
+      redirect_to new_order_path and return
+      if @order.invalid?
       redirect_to new_order_path
+      end
     end
 
   end
@@ -56,7 +57,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders
+    @orders = current_customer.orders.page(params[:page]).per(10).reverse_order
   end
 
   def show
