@@ -8,7 +8,11 @@ class Order < ApplicationRecord
     belongs_to :customer
     # 注文商品テーブルとのアソシエーション
     has_many :order_products, dependent: :destroy
-
+    
+    def sum_order_produts
+      self.order_products.all.sum(:quantity)
+    end
+    
     enum order_status: { 
         "入金待ち": 0,
         "入金確認": 1, 
