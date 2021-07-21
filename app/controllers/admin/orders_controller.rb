@@ -1,11 +1,6 @@
 class Admin::OrdersController < ApplicationController
   def index
-    if request.referer&.include?("admin/customers/")
-      customer = Customer.find(params[:key])
-      @orders = customer.orders.page(params[:page]).per(10)
-    else
       @orders = Order.page(params[:page]).per(10)
-    end
   end
 
   def show

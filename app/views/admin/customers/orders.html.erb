@@ -1,0 +1,24 @@
+<div class="container px-7 px-md-5 mt-5">
+<h2 class="head-line orders">注文履歴一覧</h2>
+  <table class="table">
+    <thead class="border-top border-bottom">
+      <tr class="table-active">
+        <td style="width: 25%">注文日時</td>
+        <td style="width: 25%">購入者</td>
+        <td style="width: 25%">注文個数</td>
+        <td style="width: 25%">注文ステータス</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order|%>
+      <tr>
+        <td><%= link_to order.created_at.strftime("%Y/%m/%d/ %H:%M:%S").to_s, admin_order_path(order) %></td>
+        <td><%= order.customer.first_name %>&nbsp;&nbsp;&nbsp;<% order.customer.last_name %></td>
+        <td><%= order.sum_order_produts %></td>
+        <td><%= order.order_status %></td>
+      </tr>
+      <% end %>
+    </tbody>
+   </table>
+   <%= paginate @orders %>
+</div>

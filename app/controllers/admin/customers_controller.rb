@@ -10,6 +10,11 @@ class Admin::CustomersController < ApplicationController
   def edit
     @customer = Customer.find(params[:id])
   end
+  def orders
+     customer = Customer.find(params[:id])
+     @orders = customer.orders.page(params[:page]).per(10)
+  end
+  
 
   def update
     customer = Customer.find(params[:id])
