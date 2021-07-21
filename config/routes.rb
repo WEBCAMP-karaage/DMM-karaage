@@ -35,7 +35,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :customers, only: [:index, :show, :edit, :update]
+    #get '/customer/:id/order' => 'orders#index', as: "customer_orders"
+    resources :customers, only: [:index, :show, :edit, :update] do
+      member do
+        get :orders
+      end
+    end
     resources :orders, only: [:index, :show, :update]
     resources :order_products, only: [:update]
     resources :products, only: [:index, :show, :new, :create, :edit, :update]

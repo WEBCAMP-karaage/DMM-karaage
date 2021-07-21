@@ -14,7 +14,7 @@ class Customer::CustomersController < ApplicationController
       render :edit
     end
   end
-
+ 
   def check
   end
 
