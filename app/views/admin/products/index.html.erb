@@ -1,10 +1,10 @@
-<div class="container px-5 px-md-0 mt-5">
+<div class="container px-5 px-md-0 mt-4">
   <div class="row" style="margin-left: 0; margin-right: 0;">
-    <h3 class="cart" style="margin-bottom: 0;">商品一覧</h3>
-    <%= link_to "", new_admin_product_path, class: 'far fa-plus-square' %>
+    <h3 class="col-md-11 col-offset-md-1" style="margin-bottom: 0;">商品一覧</h3>
+    <%= link_to "+", new_admin_product_path, class: 'col-md-1 btn btn-secondary {themecolor}.rounded-circle p-0' %>
   </div>
     <div class="cart-product-index">
-        <table class="mt-5 mb-5 table">
+        <table class="mt-4 mb-2 table">
           <thead>
             <tr class="table-active">
               <td style="width: 5%" scope="col">商品ID</td>
@@ -30,7 +30,11 @@
                   <%= product.genre.name %>
                 </td>
                 <td>
-                  <%= product.sales_status ? '販売中' : '販売停止中'%>
+                  <% if product.sales_status == true %>
+                    <span class="text-success">販売中</span>
+                  <% else %>
+                    <span class="text-secondary">販売停止中</span>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
