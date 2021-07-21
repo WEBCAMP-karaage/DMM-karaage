@@ -18,40 +18,40 @@
           <tr>
             <th scope="row">名前</th>
             <td>（姓）</td>
-            <td><%= f.text_field :first_name, autofocus: true, class: "form-control" %></td>
+            <td><%= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "令和" %></td>
             <td>（名）</td>
-            <td> <%= f.text_field :last_name, class: "form-control" %></td>
+            <td> <%= f.text_field :last_name, class: "form-control", placeholder: "道子" %></td>
           </tr>
           <tr>
             <th scope="row">フリガナ</th>
             <td>（セイ）</td>
-            <td><%= f.text_field :kana_first_name, class: "form-control" %></td>
+            <td><%= f.text_field :kana_first_name, class: "form-control", placeholder: "レイワ" %></td>
             <td>（メイ）</td>
-            <td><%= f.text_field :kana_last_name, class: "form-control" %></td>
+            <td><%= f.text_field :kana_last_name, class: "form-control", placeholder: "ミチコ" %></td>
           </tr>
           <tr>
             <th scope="row">メールアドレス</th>
             <td></td>
-            <td><%= f.email_field :email, autocomplete: "email", class: "form-control" %></td>
+            <td><%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "sample@exsample.com" %></td>
             <td></td>
             <td></td>
           </tr>
           <tr scope="row">
             <th>郵便番号（ハイフンなし）</th>
             <td></td>
-            <td><%= f.text_field :postal_code, class: "form-control" %></td>
+            <td><%= f.text_field :postal_code, class: "form-control", placeholder: "0000000" %></td>
             <td></td>
             <td></td>
           </tr>
           <tr scope="row">
             <th>住所</th>
             <td></td>
-            <td colspan="3"> <%= f.text_field :address, class: "form-control" %></td>
+            <td colspan="3"> <%= f.text_field :address, class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %></td>
           </tr>
           <tr scope="row">
             <th>電話番号（ハイフンなし）</th>
             <td></td>
-            <td><%= f.text_field :phone_number, class: "form-control" %></td>
+            <td><%= f.text_field :phone_number, class: "form-control", placeholder: "00000000000" %></td>
             <td></td>
             <td></td>
           </tr>
