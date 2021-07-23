@@ -1,4 +1,5 @@
 class Customer::CustomersController < ApplicationController
+   before_action :authenticate_customer!
   def show
   end
 
@@ -9,12 +10,13 @@ class Customer::CustomersController < ApplicationController
   def update
     @customer = Customer.find(current_customer.id)
     if @customer.update(customer_params)
+      flash[:notice] = "会員情報を更新しました。"
       redirect_to customers_my_page_path
     else
       render :edit
     end
   end
- 
+
   def check
   end
 
@@ -23,6 +25,7 @@ class Customer::CustomersController < ApplicationController
     @customer.update(withdrawal_flag: true)
     # sessionIDのリセットを行う
     reset_session
+    flash[:notice] = "退会処理が完了しました。又のご利用を心よりお待ちしております。"
     redirect_to root_path
   end
 

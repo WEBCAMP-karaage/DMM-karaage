@@ -1,4 +1,5 @@
 class Admin::ProductsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @products = Product.page(params[:page]).per(10)
   end
@@ -15,9 +16,11 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to admin_product_path(@product), notice: "商品を登録しました。"
+      flash[:notice] = "商品を登録しました。"
+      redirect_to admin_product_path(@product)
     else
-      render 'new'
+      @genres = Genre.all
+      render :new
     end
   end
 
@@ -29,9 +32,11 @@ class Admin::ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to admin_product_path(@product), notice: "商品登録の変更を保存しました。"
+      flash[:notice] = "商品情報を変更しました。"
+      redirect_to admin_product_path(@product)
     else
-      render 'edit'
+      @genres = Genre.all
+      render :edit
     end
   end
 

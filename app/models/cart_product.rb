@@ -16,4 +16,10 @@ class CartProduct < ApplicationRecord
       return @sum
     end
 
+    with_options presence: true do
+      validates :customer_id
+      validates :product_id
+      validates :quantity
+    end
+
 end

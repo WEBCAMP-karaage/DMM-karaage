@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module KaraageCake
   class Application < Rails::Application
+    # エラー時にフォームをエラーボックスで囲まないようにする記述
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 

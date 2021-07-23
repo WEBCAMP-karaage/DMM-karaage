@@ -8,4 +8,16 @@ class OrderProduct < ApplicationRecord
     製作中: 2,
     製作完了: 3
   }
+
+  with_options presence: true do
+    :order_id
+    :product_id
+    :quantity
+    :product_status
+    :order_status
+  end
+
+  # 制作制作ステータスのバリデーション
+  validates :product_status, inclusion: { in: (0..3) }
+
 end
