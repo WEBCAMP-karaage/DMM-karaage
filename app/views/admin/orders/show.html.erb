@@ -30,9 +30,9 @@
       <tr class="row pt-2">
         <th class="col-md-2">注文ステータス</th>
         <td class="col-md-10">
-            <%= form_with(model: @order, url: admin_order_path(@order), local: true, class: "form-row") do |f| %>
-                <%= f.select :order_status, options_for_select(Order.order_statuses, selected: Order.order_statuses[@order.order_status]) , class:"form-control form-control-sm col-6"  %>
-                <%= f.submit "更新" %>
+            <%= form_with(model: @order, url: admin_order_path(@order), local: true, class: "form-row ") do |f| %>
+                <%= f.select :order_status, options_for_select(Order.order_statuses, selected: Order.order_statuses[@order.order_status]) , class:"form-control form-control-sm col-6 "  %>
+                <%= f.submit "更新", class: "btn btn-success" %>
             <% end %>
       </tr>
     </table>
@@ -54,7 +54,7 @@
           <td>
             <%= form_with(model: order_product, url: admin_order_product_path(order_product), local: true, class: "form-row") do |f| %>
                 <%= f.select :product_status, options_for_select(OrderProduct.product_statuses, selected: OrderProduct.product_statuses[order_product.product_status]) , class:"form-control form-control-sm col-6"  %>
-                <%= f.submit "更新" %>
+                <%= f.submit "更新", class: "btn btn-success" %>
             <% end %>
           </td>
         </tr>
