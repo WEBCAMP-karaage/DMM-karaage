@@ -9,13 +9,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <div class="footerFixid">
+  <body class="mb-5">
       <%= render 'layouts/header' %>
         <main>
         <%= yield %>
       </main>
-      <footer></footer>
-    </div>
+      <footer class="fixed-bottom"></footer>
   </body>
 </html>
