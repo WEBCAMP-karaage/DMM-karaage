@@ -20,5 +20,11 @@
       <% end %>
     </tbody>
    </table>
-   <%= paginate @orders %>
+     <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item ">
+          <%= paginate @orders %>
+       </li>
+      </ul>
+     </nav>
 </div>
