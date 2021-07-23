@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-10 mx-auto">
-      <h1 class="mt-4">ログイン</h1>
-      <p class="mt-4">会員の方はこちらからログインしてください。</p>
+      <h2 class="page_title mt-4">ログイン</h2></br>
+      <p class="page_title mt-4 ml-4">会員の方はこちらからログイン</p>
       <table class="table table-borderless mx-auto", style="width: 75%">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <thead>
@@ -25,12 +25,13 @@
       <div class="container">
         <div class="row">
           <div class="actions mx-auto">
-            <%= f.submit "ログイン", class: "btn btn-md btn-success" %>
+            <%= f.submit "ログイン", class: "btn btn-md btn-primary" %>
           </div>
         </div>
       </div>
       <% end %>
-      <p class="mt-4">会員登録がお済みで無い方は<%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</p>
+      <p class="page_title mt-4 ml-4">会員登録がお済みで無い方</P>
+      <p class="text-center" style="width: 65%"><%= link_to "こちら", new_customer_registration_path %>　から新規登録を行ってください。</p>
     </div>
   </div>
 </div>

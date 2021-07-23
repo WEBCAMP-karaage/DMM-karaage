@@ -1,42 +1,41 @@
 <div class="container">
   <div class="row">
     <div class="col-10 mx-auto">
-      <h2 class="mt-4 page_title">お客様情報</h2>
-
+      <h2 class="mt-4 page_title">マイページ</h2>
+      <div class="row mt-4 mb-4">
+        <div class="mx-auto" style="width: 75%">
+          <span class="mr-4">登録情報</span>
+          <span><%= link_to "編集する", customers_edit_self_path, class: "btn  btn-sm btn-success" %></span>
+        </div>
+      </div>
       <table class="table mx-auto table-bordered mt-4" style="width: 75%">
-
         <tbody>
           <tr scope="row">
-            <th style="width: 30%">お名前</th>
-            <td style="width: 70%"><%= current_customer.first_name %>&nbsp;&nbsp;&nbsp;<%= current_customer.last_name %></td>
+            <th class="border border-dark table-active" style="width: 30%">お名前</th>
+            <td class="border border-dark" style="width: 70%"><%= current_customer.first_name %>&nbsp;&nbsp;&nbsp;<%= current_customer.last_name %></td>
           </tr>
           <tr scope="row">
-            <th style="width: 30%">お名前（カタカナ）</th>
-            <td style="width: 70%"><%= current_customer.kana_first_name %>&nbsp;&nbsp;&nbsp;<%= current_customer.kana_last_name %></td>
+            <th class="border border-dark table-active" style="width: 30%">お名前（カタカナ）</th>
+            <td class="border border-dark" style="width: 70%"><%= current_customer.kana_first_name %>&nbsp;&nbsp;&nbsp;<%= current_customer.kana_last_name %></td>
           </tr>
           <tr scope="row">
-            <th style="width: 30%">郵便番号</th>
-            <td style="width: 70%"><%= current_customer.postal_code %></td>
+            <th class="border border-dark table-active" style="width: 30%">郵便番号</th>
+            <td class="border border-dark" style="width: 70%"><%= current_customer.postal_code %></td>
           </tr>
           <tr scope="row">
-            <th style="width: 30%">ご住所</th>
-            <td style="width: 70%"><%= current_customer.address %></td>
+            <th class="border border-dark table-active" style="width: 30%">ご住所</th>
+            <td class="border border-dark" style="width: 70%"><%= current_customer.address %></td>
           </tr>
           <tr scope="row">
-            <th style="width: 30%">お電話番号</th>
-            <td style="width: 70%"><%= current_customer.phone_number %></td>
+            <th class="border border-dark table-active" style="width: 30%">お電話番号</th>
+            <td class="border border-dark" style="width: 70%"><%= current_customer.phone_number %></td>
           </tr>
           <tr scope="row">
-            <th style="width: 30%">メールアドレス</th>
-            <td style="width: 70%"><%= current_customer.email %></td>
+            <th class="border border-dark table-active" style="width: 30%">メールアドレス</th>
+            <td class="border border-dark" style="width: 70%"><%= current_customer.email %></td>
           </tr>
         </tbody>
       </table>
-        <div class="row">
-          <div class="mx-auto" style="width: 75%">
-            <div class="float-right">登録情報変更はこちら　<%= link_to "編集", customers_edit_self_path, class: "btn btn-sm btn-success" %></div>
-          </div>
-        </div>
         <div class="row mx-auto" style="width: 75%">
           <table class="table table-borderless" style="width: 50%">
             <tbody>
