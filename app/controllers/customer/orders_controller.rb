@@ -1,4 +1,5 @@
 class Customer::OrdersController < ApplicationController
+   before_action :authenticate_customer!
   def create
     order = Order.new(order_params)
     order.save
@@ -33,7 +34,9 @@ class Customer::OrdersController < ApplicationController
 
     elsif params[:order][:address_option] == "1"
       if params[:order][:shipping_address_option] == ""
-        redirect_to new_order_path and return
+        if @order.invalid?
+        render :new and return
+        end
 
       else shipping_address = ShippingAddress.find(params[:order][:shipping_address_option])
       @order.postal_code = shipping_address.postal_code
@@ -45,9 +48,8 @@ class Customer::OrdersController < ApplicationController
       @order.postal_code = params[:order][:postal_code]
       @order.name = params[:order][:name]
       @order.address = params[:order][:address]
-      redirect_to new_order_path and return
       if @order.invalid?
-      redirect_to new_order_path
+      render :new
       end
     end
 

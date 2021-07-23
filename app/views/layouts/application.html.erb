@@ -12,6 +12,7 @@
   <body class="mb-5">
       <%= render 'layouts/header' %>
         <main>
+        <%= flash[:notice] %>
         <%= yield %>
       </main>
       <footer class="fixed-bottom"></footer>

@@ -1,45 +1,49 @@
-<div class="container px-5 px-md-0 mt-5">
+<div class="container px-5 px-md-0 mt-3">
   <div class="row" style="margin-left: 0; margin-right: 0;">
-    <h3 class="cart" style="margin-bottom: 0;">商品一覧</h3>
-    <%= link_to "", new_admin_product_path, class: 'far fa-plus-square' %>
+    <h3 class="col-md-11 col-offset-md-1" style="margin-bottom: 0;">商品一覧</h3>
+    <%= link_to "+", new_admin_product_path, class: 'col-md-1 btn btn-secondary {themecolor}.rounded-circle p-0' %>
   </div>
-    <div class="cart-product-index">
-        <table class="mt-5 mb-5 table">
-          <thead>
-            <tr class="table-active">
-              <td style="width: 5%" scope="col">商品ID</td>
-              <td style="width: 20%" scope="col">商品名</td>
-              <td style="width: 10%" scope="col">税抜価格</td>
-              <td style="width: 20%" scope="col">ジャンル</td>
-              <td style="width: 15%" scope="col">ステータス</td>
-            </tr>
-          </thead>
-          <tbody>
-            <% @products.each do |product|%>
-              <tr>
-                <td>
-                  <%= product.id %>
-                </td>
-                <td>
-                  <u><%= link_to product.name, admin_product_path(product) %></u>
-                </td>
-                <td>
-                  <%= product.non_taxed_price.to_s(:delimited)  %>
-                </td>
-                <td>
-                  <%= product.genre.name %>
-                </td>
-                <td>
-                  <%= product.sales_status ? '販売中' : '販売停止中'%>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <div class="pagination">
-        <ul class="pagination mx-auto">
-          <%= paginate @products %>
-        </ul>
-      </div>
+  <div class="cart-product-index">
+    <table class="mt-3 mb-2 table">
+      <thead>
+        <tr class="table-active">
+          <td style="width: 5%" scope="col">商品ID</td>
+          <td style="width: 20%" scope="col">商品名</td>
+          <td style="width: 10%" scope="col">税抜価格</td>
+          <td style="width: 20%" scope="col">ジャンル</td>
+          <td style="width: 15%" scope="col">ステータス</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product|%>
+          <tr>
+            <td>
+              <%= product.id %>
+            </td>
+            <td>
+              <u><%= link_to product.name, admin_product_path(product) %></u>
+            </td>
+            <td>
+              <%= product.non_taxed_price.to_s(:delimited)  %>
+            </td>
+            <td>
+              <%= product.genre.name %>
+            </td>
+            <td>
+              <% if product.sales_status == true %>
+                <span class="text-success">販売中</span>
+              <% else %>
+                <span class="text-secondary">販売停止中</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <ul class="pagination mx-auto">
+        <%= paginate @products %>
+      </ul>
     </div>
   </div>
+</div>

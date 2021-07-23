@@ -11,5 +11,14 @@ class Product < ApplicationRecord
     def  add_tax_price
       (self.non_taxed_price * 1.10).round
     end
-    
+
+    with_options presence: true do
+      :genre_id
+      :name
+      :description
+      :non_taxed_price
+      :sales_status
+      :image_id
+    end
+
 end

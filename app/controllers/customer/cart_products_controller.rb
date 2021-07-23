@@ -1,6 +1,5 @@
 class Customer::CartProductsController < ApplicationController
-
-
+  before_action :authenticate_customer!
   def index
     @cart_products = current_customer.cart_products
   end
@@ -11,15 +10,13 @@ class Customer::CartProductsController < ApplicationController
       @cart_product = current_customer.cart_products.new(cart_product_params)
       @product = current_customer.cart_products.find_by(product_id: @cart_product.product_id)
       if @product
-
         @exsisting_cart_product = current_customer.cart_products.find_by(product_id: @product.product_id)
-
         @exsisting_cart_product.quantity += params[:cart_product][:quantity].to_i
         @exsisting_cart_product.save
       else
         @cart_product.save
       end
-
+      flash[:notice] = "カートに商品を追加しました"
       redirect_to cart_products_path
     end
   end

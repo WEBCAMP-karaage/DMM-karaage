@@ -12,23 +12,25 @@ class Customer::ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.new(shipping_address_params)
     @shipping_address.customer_id = current_customer.id
     if @shipping_address.save
-      redirect_to request.referer, notice: "配送先を追加登録しました。"
+      flash[:notice] = "配送先を追加登録しました。"
+      redirect_to request.referer
     else
-      @shipping_addresses = ShippingAddress.all
-      render 'index'
+      @shipping_addresses = current_customer.shipping_addresses
+      render :index
     end
   end
 
   def destroy
     @shipping_address = ShippingAddress.find(params[:id])
     @shipping_address.destroy
+    flash[:notice] = '配送先を削除しました。'
     redirect_to request.referer
   end
 
   def edit
     @shipping_address = ShippingAddress.find(params[:id])
     if @shipping_address.customer == current_customer
-      render 'edit'
+      render :edit
     else
       redirect_to shipping_addresses_path(@shipping_address.id)
     end
@@ -37,9 +39,10 @@ class Customer::ShippingAddressesController < ApplicationController
   def update
     @shipping_address = ShippingAddress.find(params[:id])
     if @shipping_address.update(shipping_address_params)
-      redirect_to shipping_addresses_path, notice: "配送先を更新しました。"
+      flash[:notice] = "配送先を更新しました。"
+      redirect_to shipping_addresses_path
     else
-      redirect_to "edit"
+      render :edit
     end
   end
 
