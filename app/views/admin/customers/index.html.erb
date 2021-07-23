@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row mt-4 col-10 mx-auto">
-    <h2>会員一覧画面</h2>
+    <h2 class="page_title">会員一覧</h2>
   </div>
   <div class="row col-10 mt-4 mx-auto">
-    <table class="table mx-auto" style="width: 75%">
-      <thead>
+    <table class="table mx-auto" style="width: 80%">
+      <thead class="table-active">
         <th scope="col" style="width: 15%">会員ID</th>
         <th scope="col" style="width: 30%">氏名</th>
         <th scope="col" style="width: 40%">メールアドレス</th>
-        <th scope="col" style="width: 15%"ステータス</th>
+        <th scope="col" style="width: 15%">ステータス</th>
       </thead>
       <tbody>
         <% @customers.each do |customer| %>
