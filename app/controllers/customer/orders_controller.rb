@@ -13,6 +13,14 @@ class Customer::OrdersController < ApplicationController
       order_product.save
     end
     current_customer.cart_products.destroy_all
+    unless ShippingAddress.where(customer_id: order.customer_id).where(name: order.name).where(postal_code: order.postal_code).where(address: order.address).exists?
+      shipping_address = ShippingAddress.new
+      shipping_address.customer_id = order.customer_id
+      shipping_address.name = order.name
+      shipping_address.postal_code = order.postal_code
+      shipping_address.address = order.address
+      shipping_address.save
+    end
     redirect_to orders_done_path
   end
 
@@ -44,13 +52,16 @@ class Customer::OrdersController < ApplicationController
       @order.address = shipping_address.address
       end
 
-    else params[:order][:address_option] == "2"
+    elsif params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.name = params[:order][:name]
       @order.address = params[:order][:address]
       if @order.invalid?
-      render :new
+      render :new and return
       end
+
+    else
+      render :new
     end
 
   end

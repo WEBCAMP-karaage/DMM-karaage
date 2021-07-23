@@ -34,10 +34,10 @@ class Order < ApplicationRecord
     end
 
   # 支払い方法のバリデーション(0 or 1)
-  validates :payment_method, inclusion: { in: (0..1) }
+  validates :payment_method, inclusion: { in: Order.payment_methods.keys }
 
   # 注文ステータスのバリデーション(0~4)
-  validates :order_status, inclusion: { in: (0..4) }
+  validates :order_status, inclusion: { in: Order.order_statuses.keys }
 
   # 正規表現を使ったバリデーション
   # 郵便番号のバリデーション
