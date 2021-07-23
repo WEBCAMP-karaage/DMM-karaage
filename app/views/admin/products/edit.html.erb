@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <%= form_with model:@product, url:admin_product_path, local:true do |f| %>
+          <%= form_with model:@product, url: admin_product_path, local:true do |f| %>
             <tr>
               <th><%= f.label :image, "商品画像" %></th>
               <td colspan="2">
@@ -65,7 +65,9 @@
             </tr>
             <tr>
               <td colspan="4">
-                <%= f.submit "変更を保存", class: "btn btn-success" %>
+                <div class="text-center">
+                  <%= f.submit "変更を保存", class: "btn btn-success" %>
+                </div>
               </td>
             </tr>
           <% end %>

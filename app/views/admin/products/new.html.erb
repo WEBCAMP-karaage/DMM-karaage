@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-10 mx-auto">
-      <h2 class="mt-4">商品新規登録</h2>
+      <h2 class="mt-4">商品編集</h2>
       <%= render 'layouts/errors', obj: @product %>
       <table class="table table-borderless col-8 mx-auto">
         <thead>
@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <%= form_with model:@product, url:admin_products_path, local:true do |f| %>
+          <%= form_with model:@product, url: admin_products_path, local:true do |f| %>
             <tr>
               <th><%= f.label :image, "商品画像" %></th>
               <td colspan="2">
