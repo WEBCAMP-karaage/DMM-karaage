@@ -1,24 +1,24 @@
 <div class="container">
   <div class="row">
-    <h2 class="page_title mt-4 mb-4">注文情報確認</h2>
+    <h2 class="mt-4 mb-4 col-10">注文情報確認</h2>
   </div>
   <div class="row col-10 mx-auto">
     <table class="table col-8">
       <thead>
-        <tr class="table-active">
-          <th class="border border-dark" scope="col" style="width: 50%">商品名</th>
-          <th class="border border-dark" scope="col" style="width: 25%">単価（税込）</th>
-          <th class="border border-dark" scope="col" style="width: 15%">数量</th>
-          <th class="border border-dark" scope="col" style="width: 15%">小計</th>
+        <tr>
+          <th scope="col" style="width: 50%">商品名</th>
+          <th scope="col" style="width: 25%">単価（税込）</th>
+          <th scope="col" style="width: 15%">数量</th>
+          <th scope="col" style="width: 15%">小計</th>
         </tr>
       </thead>
       <tbody>
         <% current_customer.cart_products.each do |order_product| %>
         <tr>
-          <td class="border border-dark" ><%= attachment_image_tag order_product.product, :image, :fill, 60, 40 %>&nbsp;&nbsp;&nbsp;<%= order_product.product.name %></td>
-          <td class="border border-dark" ><%= order_product.product.add_tax_price %>&nbsp;円</td>
-          <td class="border border-dark" ><%= order_product.quantity %></td>
-          <td class="border border-dark" ><%= order_product.sub_price %>&nbsp;円</td>
+          <td><%= attachment_image_tag order_product.product, :image, :fill, 60, 40 %>&nbsp;&nbsp;&nbsp;<%= order_product.product.name %></td>
+          <td><%= order_product.product.add_tax_price %>&nbsp;円</td>
+          <td><%= order_product.quantity %></td>
+          <td><%= order_product.sub_price %>&nbsp;円</td>
         </tr>
         <% end %>
       </tbody>
@@ -26,36 +26,30 @@
     <table class="table col-3 offset-md-1">
       <tbody>
         <tr>
-          <th class="border border-dark table-active" scope="row">送料</th>
-          <td class="border border-dark"><%= @order.shipping_cost %>&nbsp;円</td>
+          <th scope="row">送料</th>
+          <td><%= @order.shipping_cost %>&nbsp;円</td>
         </tr>
         <tr scope="row">
-          <th class="border border-dark table-active">商品合計</th>
-          <td class="border border-dark"><%= @order.total_price %>&nbsp;円</td>
+          <th>商品合計</th>
+          <td><%= @order.total_price %>&nbsp;円</td>
         </tr>
         <tr scope="row">
-          <th class="border border-dark table-active">請求金額</th>
-          <td class="border border-dark"><%= @order.shipping_cost + @order.total_price %>&nbsp;円</td>
+          <th>請求金額</th>
+          <td><%= @order.shipping_cost + @order.total_price %>&nbsp;円</td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="row  col-10 offset-md-1">
     <table class="table table-borderless">
-      <thead>
-        <tr>
-          <td style="width: 10%"></td>
-          <td style="width: 90%"></td>
-        </tr>
-      </thead>
       <tbody>
         <tr scope="row">
-          <th>支払方法</th>
+          <th>お支払い方法</th>
           <td><%= @order.payment_method %></td>
         </tr>
         <tr csope="row">
-          <th>お届け先</th>
-          <td>〒 <%= @order.postal_code %> <%= @order.address %></br> <%= @order.name %></td>
+          <th>配送先</th>
+          <td>〒 <%= @order.postal_code %> <%= @order.address %> <%= @order.name %></td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +64,7 @@
     <%= f.hidden_field :name %>
     <%= f.hidden_field :address %>
     <%= f.hidden_field :postal_code %>
-    <%= f.submit "注文を確定する", class: "btn btn-md btn-success" %>
+    <%= f.submit "注文確定", class: "btn btn-md btn-success" %>
     <% end %>
   </div>
   </div>
