@@ -13,12 +13,12 @@ class Product < ApplicationRecord
     end
 
     with_options presence: true do
-      :genre_id
-      :name
-      :description
-      :non_taxed_price
-      :sales_status
-      :image_id
+     validates :genre_id
+     validates :name
+     validates :description
+     validates :non_taxed_price
+     validates :sales_status
+     validates :image
     end
 
 end

@@ -13,7 +13,9 @@ class Customer::OrdersController < ApplicationController
       order_product.save
     end
     current_customer.cart_products.destroy_all
-    unless ShippingAddress.where(customer_id: order.customer_id).where(name: order.name).where(postal_code: order.postal_code).where(address: order.address).exists?
+    # 注文した顧客の住所が注文時の住所に当てはまらない、または、配送先にもデータがない場合、配送先を新規登録
+    unless ShippingAddress.where(customer_id: order.customer_id).where(name: order.name).where(postal_code: order.postal_code).where(address: order.address).exists?\
+      || Customer.where(id: order.customer_id).where(postal_code: order.postal_code).where(address: order.address).exists?
       shipping_address = ShippingAddress.new
       shipping_address.customer_id = order.customer_id
       shipping_address.name = order.name
@@ -34,7 +36,6 @@ class Customer::OrdersController < ApplicationController
     @order.shipping_cost = 800
     @order.total_price = total_price(current_customer.cart_products)
     @order.payment_method = params[:order][:payment_method]
-
     if params[:order][:address_option] == "0"
       @order.postal_code = current_customer.postal_code
       @order.name = current_customer.first_name + current_customer.last_name

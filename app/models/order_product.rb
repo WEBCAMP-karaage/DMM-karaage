@@ -10,14 +10,12 @@ class OrderProduct < ApplicationRecord
   }
 
   with_options presence: true do
-    :order_id
-    :product_id
-    :quantity
-    :product_status
-    :order_status
+   validates :order_id
+   validates :product_id
+   validates :quantity
   end
 
   # 制作制作ステータスのバリデーション
-  validates :product_status, inclusion: { in: (0..3) }
+  validates :product_status, inclusion: { in: OrderProduct.product_statuses.keys }
 
 end

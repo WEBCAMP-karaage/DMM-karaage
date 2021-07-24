@@ -1,5 +1,5 @@
 class Customer::ProductsController < ApplicationController
-   before_action :authenticate_customer!
+   before_action :authenticate_customer!, except: [:show, :index]
   def index
     @products = Product.page(params[:page]).per(8).reverse_order
     @genres = Genre.all

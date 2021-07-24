@@ -30,7 +30,6 @@ class Order < ApplicationRecord
       validates :name
       validates :address
       validates :postal_code
-      validates :order_status
     end
 
   # 支払い方法のバリデーション(0 or 1)
