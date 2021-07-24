@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
     @how = params["search"]["how"]
     @datas = search_for(@how, @value)
     @genres = Genre.all
-    @genre = Genre.find(@value)
+    #@genres = Genre.find(@value)
   end
 
   private
@@ -13,6 +13,8 @@ class SearchesController < ApplicationController
     case how
     when 'match'
       Product.where(genre_id: value)
+    when 'partical'
+      Product.where("genre_id LIKE ?", "%#{value}%").or(Product.where("name LIKE ?", "%#{value}%")).or(Product.where("description LIKE ?", "%#{value}%"))
     end
   end
 end

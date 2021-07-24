@@ -17,8 +17,7 @@
       </table>
     </div>
     <div class="col-lg-10 mt-4">
-    <h1><%= @genre.name %></h1>
-    <h2>ジャンル検索件数(全<%= @datas.count %>件)</h2>
+    <h2>"<%= @value %>" 検索件数(全<%= @datas.count %>件)</h2>
       <% if @datas.empty? %>
         <h2>該当する商品はありません</h2>
       <% else %>
