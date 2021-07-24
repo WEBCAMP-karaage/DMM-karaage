@@ -44,7 +44,8 @@ class Customer::OrdersController < ApplicationController
     elsif params[:order][:address_option] == "1"
       if params[:order][:shipping_address_option] == ""
         if @order.invalid?
-        render :new and return
+          flash.now[:danger] = "住所を選択してください。"
+          render :new and return
         end
 
       else shipping_address = ShippingAddress.find(params[:order][:shipping_address_option])
@@ -58,10 +59,12 @@ class Customer::OrdersController < ApplicationController
       @order.name = params[:order][:name]
       @order.address = params[:order][:address]
       if @order.invalid?
-      render :new and return
+        flash.now[:danger] = "新規登録の場合はフォームを正しく入力してください。"
+        render :new and return
       end
 
     else
+      flash.now[:danger] = "住所を選択してください。"
       render :new
     end
 

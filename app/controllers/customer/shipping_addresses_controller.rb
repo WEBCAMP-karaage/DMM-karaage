@@ -12,10 +12,11 @@ class Customer::ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.new(shipping_address_params)
     @shipping_address.customer_id = current_customer.id
     if @shipping_address.save
-      flash[:notice] = "配送先を追加登録しました。"
+      flash[:success] = "配送先を追加登録しました。"
       redirect_to request.referer
     else
       @shipping_addresses = current_customer.shipping_addresses
+      flash.now[:danger] = "全ての項目を正しく入力してください。"
       render :index
     end
   end
@@ -39,9 +40,10 @@ class Customer::ShippingAddressesController < ApplicationController
   def update
     @shipping_address = ShippingAddress.find(params[:id])
     if @shipping_address.update(shipping_address_params)
-      flash[:notice] = "配送先を更新しました。"
+      flash[:success] = "配送先を更新しました。"
       redirect_to shipping_addresses_path
     else
+      flash.now[:danger] = "全ての項目を正しく入力してください。"
       render :edit
     end
   end

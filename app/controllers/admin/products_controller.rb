@@ -16,10 +16,11 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:notice] = "商品を登録しました。"
+      flash[:success] = "商品を登録しました。"
       redirect_to admin_product_path(@product)
     else
       @genres = Genre.all
+      flash.now[:danger] = "全ての項目を正しく入力してください。"
       render :new
     end
   end
@@ -32,10 +33,11 @@ class Admin::ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      flash[:notice] = "商品情報を変更しました。"
+      flash[:success] = "商品情報を変更しました。"
       redirect_to admin_product_path(@product)
     else
       @genres = Genre.all
+      flash.now[:danger] = "全ての項目を正しく入力してください。"
       render :edit
     end
   end

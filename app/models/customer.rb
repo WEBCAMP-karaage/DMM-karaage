@@ -15,6 +15,10 @@ class Customer < ApplicationRecord
   with_options presence: true do
       validates :first_name
       validates :last_name
+      validates :kana_first_name
+      validates :kana_last_name
+      validates :postal_code
+      validates :phone_number
       validates :address
     end
 
@@ -25,15 +29,15 @@ class Customer < ApplicationRecord
 
   # 全角カタカナのみのバリデーション
   VARID_KANA_NAME_REGEX = /\A[ァ-ヶー－]+\z/
-  validates :kana_first_name, presence: true, format: { with: VARID_KANA_NAME_REGEX }
-  validates :kana_last_name, presence: true, format: { with: VARID_KANA_NAME_REGEX }
+  validates :kana_first_name, format: { with: VARID_KANA_NAME_REGEX }, allow_blank: true
+  validates :kana_last_name, format: { with: VARID_KANA_NAME_REGEX }, allow_blank: true
 
   # 郵便番号のバリデーション
   VARID_POSTAL_CODE_REGEX = /\A\d{7}\z/
-  validates :postal_code, presence: true, format: { with: VARID_POSTAL_CODE_REGEX }
+  validates :postal_code, format: { with: VARID_POSTAL_CODE_REGEX }, allow_blank: true
 
   # 電話番号のバリデーション
   VARID_PHONE_NUMBER_REGEX = /\A\d{10,11}\z/
-  validates :phone_number, presence: true, format: { with: VARID_PHONE_NUMBER_REGEX}
+  validates :phone_number, format: { with: VARID_PHONE_NUMBER_REGEX}, allow_blank: true
 
 end
