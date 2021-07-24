@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searches/search'
   devise_for :customers, controllers: {
     sessions: 'customers/sessions',
     passwords: 'customers/passwords',
