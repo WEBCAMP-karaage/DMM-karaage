@@ -15,5 +15,5 @@ class ShippingAddress < ApplicationRecord
   # 正規表現を使ったバリデーション
   # 郵便番号のバリデーション
   VARID_POSTAL_CODE_REGEX = /\A\d{7}\z/
-  validates :postal_code, presence: true, format: { with: VARID_POSTAL_CODE_REGEX }
+  validates :postal_code, format: { with: VARID_POSTAL_CODE_REGEX }, allow_blank: true
 end

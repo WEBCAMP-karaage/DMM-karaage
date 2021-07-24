@@ -10,9 +10,10 @@ class Customer::CustomersController < ApplicationController
   def update
     @customer = Customer.find(current_customer.id)
     if @customer.update(customer_params)
-      flash[:notice] = "会員情報を更新しました。"
+      flash[:success] = "会員情報を更新しました。"
       redirect_to customers_my_page_path
     else
+      flash.now[:danger] = "全ての項目を正しく入力してください。"
       render :edit
     end
   end
