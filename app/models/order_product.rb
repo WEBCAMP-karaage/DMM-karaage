@@ -16,6 +16,6 @@ class OrderProduct < ApplicationRecord
   end
 
   # 制作制作ステータスのバリデーション
-  validates :product_status, inclusion: { in: OrderProduct.product_statuses.keys }
+  validates :product_status, inclusion: { in: OrderProduct.product_statuses.keys }, allow_blank: true
 
 end

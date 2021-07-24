@@ -16,7 +16,7 @@ class Customer::CartProductsController < ApplicationController
       else
         @cart_product.save
       end
-      flash[:notice] = "カートに商品を追加しました"
+      flash[:success] = "カートに商品を追加しました"
       redirect_to cart_products_path
     end
   end
@@ -26,21 +26,21 @@ class Customer::CartProductsController < ApplicationController
   def update
     @cart_product = CartProduct.find(params[:id])
     @cart_product.update(quantity: params[:cart_product][:quantity].to_i)
-    flash[:notice] = "#{@cart_product.product.name}の数量を変更しました。"
+    flash[:success] = "#{@cart_product.product.name}の数量を変更しました。"
     redirect_to request.referer
   end
 
   def destroy
     @cart_product = CartProduct.find(params[:id])
     @cart_product.destroy
-    flash[:alert] = "#{@cart_product.product.name}を削除しました。"
+    flash[:notice] = "#{@cart_product.product.name}を削除しました。"
     redirect_to cart_products_path
   end
 
   def all_destroy
     @cart_products = current_customer.cart_products
     @cart_products.destroy_all
-    flash[:alert] = "カートの商品を全て削除しました。"
+    flash[:notice] = "カートの商品を全て削除しました。"
     redirect_to cart_products_path
   end
 

@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
-          <div class="text-light">ようこそ、<%= current_customer.first_name %>さん！</div>
+          <div class="text-light d-flex align-items-center">ようこそ、<%= current_customer.first_name %>さん！</div>
           <li><%= link_to 'マイページ',customers_my_page_path, class: 'nav-link text-light border rounded mr-2' %></li>
           <li><%= link_to '商品一覧', products_path, class: 'nav-link text-light border rounded mx-2' %></li>
           <li><%= link_to 'カート', cart_products_path, class: 'nav-link text-light border rounded mx-2'%></li>
