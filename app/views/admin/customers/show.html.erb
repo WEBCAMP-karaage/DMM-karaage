@@ -1,1 +1,66 @@
-<h1>admin/customoers_show</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <h2 class="mt-4 page_title"><%= @customer.first_name %><%= @customer.last_name %>さんの会員情報詳細</h2>
+
+      <table class="table mx-auto table-bordered mt-4" style="width: 75%">
+
+        <tbody>
+          <tr scope="row">
+            <th style="width: 30%">会員ID</th>
+            <td style="width: 70%"><%= @customer.id %></td>
+          </tr>
+          <tr scope="row">
+            <th style="width: 30%">お名前</th>
+            <td style="width: 70%"><%= @customer.first_name %>&nbsp;&nbsp;&nbsp;<%= @customer.last_name %></td>
+          </tr>
+          <tr scope="row">
+            <th style="width: 30%">お名前（カタカナ）</th>
+            <td style="width: 70%"><%= @customer.kana_first_name %>&nbsp;&nbsp;&nbsp;<%= @customer.kana_last_name %></td>
+          </tr>
+          <tr scope="row">
+            <th style="width: 30%">郵便番号</th>
+            <td style="width: 70%"><%= @customer.postal_code %></td>
+          </tr>
+          <tr scope="row">
+            <th style="width: 30%">ご住所</th>
+            <td style="width: 70%"><%= @customer.address %></td>
+          </tr>
+          <tr scope="row">
+            <th style="width: 30%">お電話番号</th>
+            <td style="width: 70%"><%= @customer.phone_number %></td>
+          </tr>
+          <tr scope="row">
+            <th style="width: 30%">メールアドレス</th>
+            <td style="width: 70%"><%= @customer.email %></td>
+          </tr>
+          <tr scope="row">
+            <th style="width: 30%">会員ステータス</th>
+            <td style="width: 70%">
+              <% if @customer.withdrawal_flag == true %>
+              <span class="text-danger">退会</span>
+              <% else %>
+              <span class="text-success">有効</span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+        <div class="row mx-auto" style="width: 75%">
+          <table class="table table-borderless" style="width: 50%">
+            <tbody>
+              <tr>
+                <th style="width: 50%">会員情報編集</th>
+                <td style="width: 50%"><%= link_to "編集する", edit_admin_customer_path, class: "btn btn-sm btn-success", style: "width:100px" %></td>
+              </tr>
+              <tr>
+                <th>ご注文履歴</th>
+                <td><%= link_to "一覧を見る", orders_admin_customer_path, class: "btn btn-sm btn-primary", style: "width:100px" %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

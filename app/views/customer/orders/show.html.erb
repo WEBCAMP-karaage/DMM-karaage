@@ -1,1 +1,77 @@
-<h1>order_show</h1>
+<div class= "container px-7 px-md-5 mt-5">
+<h2 class="col-md-offset-1 head-line orders">注文履歴詳細</h2>
+</div>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <h4>注文情報</h4>
+  	    <table class="table table-bordered table-condensed mt-0">
+  	      <tbody>
+            <tr>
+              <th class="border border-dark table-active border">注文日</th>
+          	  <td class="text-left border border-dark order-content"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <th class="border border-dark table-active">配送先</th>
+              <td class="text-left border border-dark">
+                  <%= @order.postal_code %><br>
+                  <%= @order.address %><br>
+                  <%= @order.name %>
+              </td>
+            </tr>
+            <tr>
+              <th class="border border-dark table-active">支払方法</th>
+              <td class="text-left border border-dark"><%= @order.payment_method %></td>
+            </tr>
+            <tr>
+              <th class="border border-dark table-active">ステータス</th>
+              <td class="text-left border border-dark"><%= @order.order_status %></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+      <h4>請求情報</h4>
+      <table class="table table-bordered table-condensed">
+        <tr>
+          <th class="border border-dark table-active border">商品合計</th>
+          <td class="col-xs-5 border border-dark"><%= @order.total_price.to_s(:delimited) %>円</td>
+        </tr>
+        <tr>
+          <th class="border border-dark table-active border">配送料</th>
+          <td class="col-xs-5 border border-dark"><%= @order.shipping_cost %>円</td>
+        </tr>
+        <tr>
+          <th class="border border-dark table-active border">ご請求金額</th>
+          <td class="col-xs-5 border border-dark"><%= @order.shipping_cost + @order.total_price%>円</td>
+        </tr>
+      </table>
+      
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<h4>注文内容</h4>
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table table-bordered table-condensed">
+        <tr>
+          <th class="border border-dark table-active">商品</th>
+          <th class="border border-dark table-active">単価(税込)</th>
+  	      <th class="border border-dark table-active">個数</th>
+  	      <th class="border border-dark table-active">小計</th>
+        </tr>  
+        <% @order_products.each do |order_product| %>
+        <tr>
+          <td class="border border-dark"><%= order_product.product.name %></td>
+          <td class="border border-dark"><%= order_product.product.add_tax_price.to_s(:delimited) %>円</td>
+          <td class="border border-dark"><%= order_product.quantity %></td>
+          <td class="border border-dark"><%= (order_product.product.add_tax_price*order_product.quantity).to_s(:delimited) %>円</td>
+        </tr>
+        <% end %>
+      </table>
+　　</div>
+　</div>
+</div>

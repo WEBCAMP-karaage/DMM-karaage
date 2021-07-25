@@ -1,3 +1,29 @@
 // Place all the styles related to the customer/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.confilm{
+  margin-top: 120px;
+  margin-bottom: 120px;
+  text-align: center;
+}
+
+.confilm-header{
+  margin-bottom: 40px;
+}
+
+.confilm-header > h4{
+  display: inline-block;
+}
+
+.confilm-btn{
+  margin-top: 40px;
+}
+
+.btn-danger{
+  margin-left: 20px;
+}
+
+.page_title{
+  display:inline-block;
+  background-color: #eeeeee;
+}

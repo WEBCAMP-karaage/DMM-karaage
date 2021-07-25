@@ -1,1 +1,68 @@
-<h1>customer_editpage</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h2 class="mt-4">会員情報編集</h2>
+      <%= render '/layouts/errors', obj: @customer %>
+       <table class="table table-borderless">
+          <%= form_with model: @customer, url: customers_update_path, local:true do |f| %>
+          <thead>
+            <tr>
+              <th style="width: 30%"></th>
+              <th style="width: 10%"></th>
+              <th style="width: 25%"></th>
+              <th style="width: 10%"></th>
+              <th style="width: 25%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">名前</th>
+              <td>（姓）</td>
+              <td><%= f.text_field :first_name, autofocus: true, class: "form-control" %></td>
+              <td>（名）</td>
+              <td> <%= f.text_field :last_name, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th scope="row">フリガナ</th>
+              <td>（セイ）</td>
+              <td><%= f.text_field :kana_first_name, class: "form-control" %></td>
+              <td>（メイ）</td>
+              <td><%= f.text_field :kana_last_name, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th scope="row">メールアドレス</th>
+              <td></td>
+              <td><%= f.email_field :email, autocomplete: "email", class: "form-control" %></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr scope="row">
+              <th>郵便番号（ハイフンなし）</th>
+              <td></td>
+              <td><%= f.text_field :postal_code, class: "form-control" %></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr scope="row">
+              <th>住所</th>
+              <td></td>
+              <td colspan="3"> <%= f.text_field :address, class: "form-control" %></td>
+            </tr>
+            <tr scope="row">
+              <th>電話番号（ハイフンなし）</th>
+              <td></td>
+              <td><%= f.text_field :phone_number, class: "form-control" %></td>
+              <td></td>
+              <td></td>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="actions mx-auto">
+            <%= f.submit "編集内容を保存", class: "btn btn-md btn-success" %>
+            <% end %>
+          </div>
+          <p class="float-right">退会は<%= link_to "こちら", customers_check_path %></p>
+        </div>
+    </div>
+  </div>
+</div>

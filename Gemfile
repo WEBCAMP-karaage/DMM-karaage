@@ -74,3 +74,7 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
 gem 'kaminari','~> 1.2.1'
+
+gem 'ransack'
+# 日本語を適用するためのgem
+gem 'rails-i18n'
