@@ -17,18 +17,18 @@
       </table>
     </div>
   <div class="col-md-10 mx-auto">
-    <div class="mt-4 jumbotron">
-      <b><p class="wellcome-message text center">
+    <div class="mt-4 jumbotron text-center">
+      <p class="wellcome-message mx-auto"><b>
         ようこそ、ながのCAKEへ！</br>
         このサイトは、ケーキ販売のECサイトになります。</br>
         会員ではない方も商品の閲覧はできますが、</br>
         購入には会員登録が必要になります。
-      </p></b>
+      </b></p>
     </div>
     <h3 class="product-headline">新着商品</h2>
-    <div class="product-box  d-flex flex-wrap">
+    <div class="product-box  d-flex flex-wrap justify-content-between">
       <% @products.each do |product|%>
-      <div class="flex_container mr-4">
+      <div class="flex_container">
         <div>
           <%= link_to attachment_image_tag(product, :image, :fill,200,200), product_path(product) %>
         </div>
