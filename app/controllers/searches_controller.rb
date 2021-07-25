@@ -13,8 +13,9 @@ class SearchesController < ApplicationController
     when 'match'
       Product.where(genre_id: value)
     when 'partical'
-      genre_id = Genre.find_by(name: value).id
-      Product.where("genre_id LIKE ?", "%#{genre_id}%").or(Product.where("name LIKE ?", "%#{value}%")).or(Product.where("description LIKE ?", "%#{value}%"))
+    # joinsでテーブルを結合している。子テーブルの場合は複数形、親テーブルの場合は単数系で指定
+    # カラムの指定はテーブル名で！
+      Product.joins(:genre).where("genres.name LIKE ? OR products.name LIKE ? OR  products.description LIKE ?", "%#{value}%", "%#{value}%", "%#{value}%")
     end
   end
 end
