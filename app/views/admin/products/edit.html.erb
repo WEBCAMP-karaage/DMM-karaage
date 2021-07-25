@@ -31,7 +31,7 @@
             <tr>
               <th><%= f.label :desctiption, "商品説明" %></th>
               <td colspan="2">
-              <%= f.text_field :description, class: 'form-control', :placeholder =>'ここに説明文を記述します', size:"333x60"%>
+              <%= f.text_area :description, class: 'form-control', :placeholder =>'ここに説明文を記述します', rows: 5%>
               <td></td>
             </td>
             <td></td>
@@ -54,12 +54,12 @@
             <tr class="sales_status">
               <th><%= f.label :sales_status, "販売ステータス" %></th>
               <td>
-                <%= f.radio_button :sales_status, true %>
-                <%= f.label :sales_status, "販売中", value: true %>
+                <%= f.radio_button :sales_status, :true %>
+                <%= f.label :sales_status, "販売中", {value: :true} %>
               </td>
               <td>
-                <%= f.radio_button :sales_status, false %>
-                <%= f.label :sales_status, "販売停止中", value: false %>
+                <%= f.radio_button :sales_status, :false %>
+                <%= f.label :sales_status, "販売停止中", {value: :false} %>
               </td>
               <td></td>
             </tr>

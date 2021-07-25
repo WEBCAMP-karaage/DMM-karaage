@@ -17,8 +17,9 @@ class Product < ApplicationRecord
      validates :name
      validates :description
      validates :non_taxed_price
-     validates :sales_status
      validates :image
     end
+
+     validates :sales_status, inclusion: { in: [true, false] }
 
 end
