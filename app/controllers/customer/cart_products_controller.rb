@@ -9,12 +9,16 @@ class Customer::CartProductsController < ApplicationController
     if customer_signed_in?
       @cart_product = current_customer.cart_products.new(cart_product_params)
       @product = current_customer.cart_products.find_by(product_id: @cart_product.product_id)
-      if @product
-        @exsisting_cart_product = current_customer.cart_products.find_by(product_id: @product.product_id)
-        @exsisting_cart_product.quantity += params[:cart_product][:quantity].to_i
-        @exsisting_cart_product.save
+      if @cart_product.product.sales_status == true
+        if @product
+          @exsisting_cart_product = current_customer.cart_products.find_by(product_id: @product.product_id)
+          @exsisting_cart_product.quantity += params[:cart_product][:quantity].to_i
+          @exsisting_cart_product.save
+        else
+          @cart_product.save
+        end
       else
-        @cart_product.save
+        redirect_to products_path
       end
       flash[:success] = "カートに商品を追加しました"
       redirect_to cart_products_path
